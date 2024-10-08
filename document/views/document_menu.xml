@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<odoo>
+    <data>
+
+        <menuitem 
+            id="documentos_documentos_menu" 
+            name="Documento" 
+            web_icon="document,static/description/icon.png" 
+            sequence="10" 
+        />
+
+        <menuitem 
+            id="submenu_documentos_documentos_menu" 
+            name="Documentos" 
+            parent="documentos_documentos_menu" 
+            sequence="10" 
+            action="act_documentos_documentos" 
+        />
+
+        <menuitem 
+            id="submenu_documents_folder_menu" 
+            name="Folder" 
+            parent="documentos_documentos_menu" 
+            sequence="20" 
+            action="act_documents_folder" 
+        />
+        
+        <menuitem 
+            id="submenu_documentos_revision_menu" 
+            name="Revisiones" 
+            parent="documentos_documentos_menu" 
+            sequence="30" 
+            action="act_documentos_revisiones" 
+        />
+        
+    </data>
+</odoo>

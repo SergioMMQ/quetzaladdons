@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_documentos_documentos_search" model="ir.ui.view">
+        <field name="name">documentos.documentos.search</field>
+        <field name="model">documentos.documentos</field>
+        <field name="arch" type="xml">
+            <search string="Buscar documentos">
+                <field name="name" string="Nombre"/>
+                <field name="description" string="Descripción"/>
+                <field name="type" string="Tipo" />
+                <filter name="file_filter" string="Archivos" domain="[('type', '=', 'file')]"/>
+                <filter name="url_filter" string="Enlaces" domain="[('type', '=', 'url')]"/>
+                <filter name="content_filter" string="Contenido" domain="[('type', '=', 'content')]"/>
+                <searchpanel>
+                    <field name="folder_id" string="Carpeta"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+</odoo>
