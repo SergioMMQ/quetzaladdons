@@ -43,11 +43,14 @@ class Documentos(models.Model):
                 return True
         return super(Documentos, self).check_access_rule(operation)
     
-    # Sobreescribimos el método search para ajustar el filtro de carpetas
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    def search(self, args, offset=0, limit=None, order=None, lazy=False):
+        # Crear una copia de los argumentos para evitar modificar el original durante la iteración
+        new_args = args[:]
+
         for arg in args:
             if arg[0] == 'folder_id' and isinstance(arg[2], int):
-                # Filtra para que solo muestre los documentos de la carpeta seleccionada (sin subcarpetas)
-                args.append(('folder_id', '=', arg[2]))
-        return super(Documentos, self).search(args, offset=offset, limit=limit, order=order, count=count)
+                # Agregar un filtro adicional para que solo muestre los documentos de la carpeta seleccionada (sin subcarpetas)
+                new_args.append(('folder_id', '=', arg[2]))
+
+        return super(Documentos, self).search(new_args, offset=offset, limit=limit, order=order)
