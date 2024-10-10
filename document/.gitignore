@@ -1,0 +1,6 @@
+# Ignorar la carpeta __pycache__
+__pycache__/
+*.py[cod]
+
+# Ignorar la carpeta data y su contenido
+data/
