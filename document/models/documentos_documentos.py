@@ -16,7 +16,7 @@ class Documentos(models.Model):
     content = fields.Text(string='Contenido')
     file_name = fields.Char(string='Nombre del archivo adjunto')
     files = fields.One2many("documentos.revisiones", "name", string="Revisiones")
-    file = fields.Binary(string='Archivo', compute='_compute_last_revision_file')
+    file = fields.Binary(string='Archivo', compute='_compute_last_revision_file', store=True)
     url = fields.Char(string='Enlace')
     folder_id = fields.Many2one('documents.folder', string='Carpeta')
     res_model = fields.Char(string='Modelo relacionado')
@@ -43,3 +43,11 @@ class Documentos(models.Model):
                 return True
         return super(Documentos, self).check_access_rule(operation)
     
+    # Sobreescribimos el método search para ajustar el filtro de carpetas
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        for arg in args:
+            if arg[0] == 'folder_id' and isinstance(arg[2], int):
+                # Filtra para que solo muestre los documentos de la carpeta seleccionada (sin subcarpetas)
+                args.append(('folder_id', '=', arg[2]))
+        return super(Documentos, self).search(args, offset=offset, limit=limit, order=order, count=count)

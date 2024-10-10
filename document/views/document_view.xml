@@ -4,7 +4,7 @@
         <field name="name">documentos.documentos.view.kanban</field>
         <field name="model">documentos.documentos</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban string="Documentos" limit="20">
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">

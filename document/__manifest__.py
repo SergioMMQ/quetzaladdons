@@ -21,7 +21,6 @@
             'document/static/src/*.js',
             'document/static/src/*.xml',
             'document/static/src/*.scss',
-            
         ],
     },
     'installable': True,
