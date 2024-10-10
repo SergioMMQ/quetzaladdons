@@ -13,14 +13,10 @@
         'views/document_menu.xml',
         'views/document_folder.xml',
         'views/document_search.xml',
-        'views/documents.xml',
         'views/revisiones_documentos.xml',
         ],
     'assets': {
         'web.assets_backend': [
-            'document/static/src/*.js',
-            'document/static/src/*.xml',
-            'document/static/src/*.scss',
         ],
     },
     'installable': True,
