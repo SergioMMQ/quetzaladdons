@@ -5,7 +5,7 @@
     'summary':"""    Aplicacion para Documentos    """,
     'author': 'Sergio Martinez Meneses',
     'category': 'Informes',
-    'version': '1.0.1',
+    'version': '1.0.2',
     'depends': ['base','base_setup','web','mail'],
     'data': [
         'security/ir.model.access.csv',
