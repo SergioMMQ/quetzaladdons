@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_documentos,access.documentos.documentos,model_documentos_documentos,,1,1,1,1
+access_documents_folder,access.documents.folder,model_documents_folder,,1,1,1,1
+access_documentos_revisiones,access.documentos.revisiones,model_documentos_revisiones,,1,1,1,1
