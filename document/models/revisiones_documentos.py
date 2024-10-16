@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, exceptions
 
 class Revisiones(models.Model):
     _name = 'documentos.revisiones'
@@ -16,3 +16,15 @@ class Revisiones(models.Model):
         ('approved', 'Aprobado'),
         ('rejected', 'Rechazado'),
     ], string="Estado", default="draft")
+    
+    # Asegúrate de que folder_id esté definido en este modelo
+    # edit_groups_id = fields.Many2many('res.groups', string='Grupos de edición', related='folder_id.edit_groups_id')
+
+    def check_access_rule(self, operation):
+        if operation == 'write':
+            if self.edit_groups_id:
+                if not self.env.user.groups_id & self.edit_groups_id:
+                    raise exceptions.AccessError("No tienes permiso para editar este registro")
+            else:
+                return True
+        return super(Revisiones, self).check_access_rule(operation)
