@@ -17,8 +17,8 @@ class Revisiones(models.Model):
         ('rejected', 'Rechazado'),
     ], string="Estado", default="draft")
     
-    # Asegúrate de que folder_id esté definido en este modelo
-    # edit_groups_id = fields.Many2many('res.groups', string='Grupos de edición', related='folder_id.edit_groups_id')
+    folder_id = fields.Many2one('documents.folder', string='Carpeta')
+    edit_groups_id = fields.Many2many('res.groups', string='Grupos de edición', related='folder_id.edit_groups_id')
 
     def check_access_rule(self, operation):
         if operation == 'write':

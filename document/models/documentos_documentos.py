@@ -45,12 +45,10 @@ class Documentos(models.Model):
     
     @api.model
     def search(self, args, offset=0, limit=None, order=None, lazy=False):
-        # Crear una copia de los argumentos para evitar modificar el original durante la iteración
         new_args = args[:]
 
         for arg in args:
             if arg[0] == 'folder_id' and isinstance(arg[2], int):
-                # Agregar un filtro adicional para que solo muestre los documentos de la carpeta seleccionada (sin subcarpetas)
                 new_args.append(('folder_id', '=', arg[2]))
 
         return super(Documentos, self).search(new_args, offset=offset, limit=limit, order=order)

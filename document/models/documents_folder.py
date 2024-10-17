@@ -19,7 +19,6 @@ class Folder(models.Model):
             if self.edit_groups_id:
                 if not self.env.user.groups_id & self.edit_groups_id:
                     raise exceptions.AccessError("No tienes permiso para editar este registro")
-            # Si no hay grupos asignados, permitir acceso a todos
             else:
                 return True
         return super(Folder, self).check_access_rule(operation)
