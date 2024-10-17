@@ -1,4 +1,7 @@
+import logging
 from odoo import models, fields, exceptions
+
+_logger = logging.getLogger(__name__)
 
 class Folder(models.Model):
     _name = 'documents.folder'
@@ -12,7 +15,18 @@ class Folder(models.Model):
     create_date = fields.Datetime(string='Fecha de creación', readonly=True)
     write_date = fields.Datetime(string='Fecha de actualización', readonly=True)
     
-    edit_groups_id = fields.Many2many('res.groups', string='Grupos que pueden editar')
+    edit_groups_id = fields.Many2many(
+    'res.groups',
+    'documents_folder_edit_rel',  # Nombre explícito para la relación Many2many
+    'folder_id', 'group_id',
+    string='Grupos que pueden editar'
+    )
+    view_groups_id = fields.Many2many(
+    'res.groups',
+    'documents_folder_view_rel',  # Nombre explícito para la relación Many2many
+    'folder_id', 'group_id',
+    string='Grupos que pueden ver'
+    )
     
     def check_access_rule(self, operation):
         if operation == 'write':
@@ -22,5 +36,3 @@ class Folder(models.Model):
             else:
                 return True
         return super(Folder, self).check_access_rule(operation)
-
-    

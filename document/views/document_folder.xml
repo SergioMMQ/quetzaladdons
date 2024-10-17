@@ -34,6 +34,7 @@
                     <group>
                         <field name="document_ids" widget="many2many_tags"/>
                         <field name="edit_groups_id" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" domain="[('category_id', '=', False)]"/>
+                        <field name="view_groups_id" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" domain="[('category_id', '=', False)]"/>
                     </group>
                 </sheet>
             </form>
