@@ -7,7 +7,7 @@ class Folder(models.Model):
     _name = 'documents.folder'
     _description = 'Carpeta de documentos'
 
-    name = fields.Char(string='Nombre', required=True, unique=True)
+    name = fields.Char(string='Nombre', required=True)
     description = fields.Text(string='Descripción de la carpeta')
     parent_id = fields.Many2one('documents.folder', string='Carpeta padre', ondelete='cascade')
     child_ids = fields.One2many('documents.folder', 'parent_id', string='Carpetas hijas', readonly=True)
